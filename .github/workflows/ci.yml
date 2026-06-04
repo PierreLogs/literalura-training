@@ -1,0 +1,38 @@
+name: CI - Verificación de Entrenamiento
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Verificar estructura del repositorio
+      run: |
+        echo "=== Verificando estructura ==="
+        for modulo in modulo-*/; do
+          if [ -f "$modulo/README.md" ]; then
+            echo "✅ $modulo - README.md encontrado"
+          else
+            echo "❌ $modulo - FALTA README.md"
+            exit 1
+          fi
+        done
+        echo "=== Todos los módulos OK ==="
+    
+    - name: Verificar progreso
+      run: |
+        echo "=== Verificando tracking ==="
+        if [ -f "progreso/tracker.json" ]; then
+          echo "✅ tracker.json encontrado"
+        else
+          echo "❌ FALTA tracker.json"
+          exit 1
+        fi
+        echo "=== Estructura OK ==="

@@ -1,0 +1,13 @@
+target/
+*.class
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+*.log
+**/build/
+**/bin/
+*.zip
+*.tar.gz
+*.7z

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiterAlura - Dashboard de Progreso</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 2rem; }
+        
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6366f1;
+        }
+        .stat-card .label { font-size: 0.85rem; color: #94a3b8; margin-top: 0.3rem; }
+
+        .progress-container {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #334155;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .progress-bar {
+            height: 20px;
+            background: #334155;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .module-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .module-item {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #334155;
+            transition: all 0.2s;
+        }
+        .module-item:hover { border-color: #6366f1; }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .status-dot.pending { background: #64748b; }
+        .status-dot.in-progress { background: #f59e0b; animation: pulse 1.5s infinite; }
+        .status-dot.done { background: #22c55e; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .module-name { flex: 1; font-weight: 500; }
+        .module-percent { color: #94a3b8; font-size: 0.85rem; }
+        .module-check { color: #22c55e; }
+        .module-pending { color: #64748b; }
+        
+        .legend {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #1e293b;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 LiterAlura</h1>
+        <p class="subtitle">Dashboard de Progreso de Entrenamiento</p>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="number" id="modulos-completados">0</div>
+                <div class="label">Módulos Completados</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="ejercicios-hechos">0</div>
+                <div class="label">Ejercicios Resueltos</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="porcentaje">0%</div>
+                <div class="label">Progreso Global</div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-label">
+                <span>Progreso global</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="module-list" id="module-list"></div>
+
+        <div class="legend">
+            <div class="legend-item"><span class="status-dot pending"></span> Pendiente</div>
+            <div class="legend-item"><span class="status-dot in-progress"></span> En Progreso</div>
+            <div class="legend-item"><span class="status-dot done"></span> Completado</div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURACIÓN MANUAL =====
+        // Actualiza estos valores cuando completes módulos
+        const data = {
+            modulos: [
+                { name: "00 - Setup del Entorno", status: "pending", percent: 0 },
+                { name: "01 - Fundamentos de Java", status: "pending", percent: 0 },
+                { name: "02 - POO Básico", status: "pending", percent: 0 },
+                { name: "03 - POO Intermedio", status: "pending", percent: 0 },
+                { name: "04 - Colecciones y Lambdas", status: "pending", percent: 0 },
+                { name: "05 - Manejo de Excepciones", status: "pending", percent: 0 },
+                { name: "06 - JDBC y PostgreSQL", status: "pending", percent: 0 },
+                { name: "07 - JPA e Hibernate", status: "pending", percent: 0 },
+                { name: "08 - Spring Boot y DI", status: "pending", percent: 0 },
+                { name: "09 - Spring Data JPA", status: "pending", percent: 0 },
+                { name: "10 - Consumo de APIs REST", status: "pending", percent: 0 },
+                { name: "11 - Streams Avanzados", status: "pending", percent: 0 },
+                { name: "12 - Proyecto Final", status: "pending", percent: 0 }
+            ]
+        };
+
+        function render() {
+            const total = data.modulos.length;
+            const completados = data.modulos.filter(m => m.status === "done").length;
+            const enProgreso = data.modulos.filter(m => m.status === "in-progress").length;
+            const totalPercent = Math.round(data.modulos.reduce((sum, m) => sum + m.percent, 0) / total);
+            
+            document.getElementById("modulos-completados").textContent = completados;
+            document.getElementById("ejercicios-hechos").textContent = completados * 3;
+            document.getElementById("porcentaje").textContent = totalPercent + "%";
+            document.getElementById("progress-text").textContent = totalPercent + "%";
+            document.getElementById("progress-fill").style.width = totalPercent + "%";
+
+            const list = document.getElementById("module-list");
+            list.innerHTML = "";
+            data.modulos.forEach(m => {
+                const item = document.createElement("div");
+                item.className = "module-item";
+                item.innerHTML = `
+                    <span class="status-dot ${m.status}"></span>
+                    <span class="module-name">${m.name}</span>
+                    <span class="module-percent">${m.percent}%</span>
+                    <span class="${m.status === 'done' ? 'module-check' : 'module-pending'}">${m.status === 'done' ? '✅' : '⏳'}</span>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        render();
+    </script>
+</body>
+</html>

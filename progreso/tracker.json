@@ -1,0 +1,171 @@
+{
+  "estudiante": "Tu Nombre",
+  "fecha_inicio": "2026-06-04",
+  "modulos": {
+    "modulo-00-setup": {
+      "nombre": "Setup del Entorno",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "verificar-java": false,
+        "verificar-git": false,
+        "verificar-psql": false,
+        "hola-mundo": false,
+        "commit-inicial": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-01-fundamentos": {
+      "nombre": "Fundamentos de Java",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "01-A-calculadora-descuentos": false,
+        "01-B-menu-interactivo": false,
+        "01-C-arrays-metodos": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-02-poo-basico": {
+      "nombre": "POO Básico",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "02-A-clase-autor": false,
+        "02-B-utilidades-libros": false,
+        "02-C-catalogo-arraylist": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-03-poo-intermedio": {
+      "nombre": "POO Intermedio",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "03-A-usuario-bibliotecario": false,
+        "03-B-interface-autores": false,
+        "03-C-revista-abstracta": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-04-colecciones": {
+      "nombre": "Colecciones y Lambdas",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "04-A-arraylist-streams": false,
+        "04-B-hashmap-libros": false,
+        "04-C-repositorio-generico": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-05-excepciones": {
+      "nombre": "Manejo de Excepciones",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "05-A-validaciones-trycatch": false,
+        "05-B-excepcion-personalizada": false,
+        "05-C-gestor-archivos": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-06-bases-datos-jdbc": {
+      "nombre": "JDBC y PostgreSQL",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "06-A-libro-dao": false,
+        "06-B-transacciones": false,
+        "06-C-hikaricp": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-07-jpa-hibernate": {
+      "nombre": "JPA e Hibernate",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "07-A-entidades-persistencia": false,
+        "07-B-crud-entitymanager": false,
+        "07-C-jpql-avanzado": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-08-spring-boot": {
+      "nombre": "Spring Boot y DI",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "08-A-primer-proyecto": false,
+        "08B-inyeccion-dependencias": false,
+        "08-C-config-bean-scanner": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-09-spring-data-jpa": {
+      "nombre": "Spring Data JPA",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "09-A-entidades-repositorios": false,
+        "09-B-servicios-principal": false,
+        "09-C-query-avanzadas": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-10-api-rest": {
+      "nombre": "Consumo de APIs REST",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "10-A-gutendex-jackson": false,
+        "10-B-api-base-datos": false,
+        "10-C-timeout-errores": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-11-streams-avanzados": {
+      "nombre": "Streams Avanzados",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "11-A-estadisticas-streams": false,
+        "11-B-optional-funcional": false,
+        "11-C-flatmap-reportes": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    },
+    "modulo-12-proyecto-final": {
+      "nombre": "Proyecto Final LiterAlura",
+      "estado": "pendiente",
+      "fecha_completado": null,
+      "ejercicios": {
+        "proyecto-funcional-completo": false
+      },
+      "evaluacion_aprobada": false,
+      "notas": ""
+    }
+  },
+  "estadisticas": {
+    "modulos_completados": 0,
+    "modulos_totales": 12,
+    "porcentaje_global": 0,
+    "ejercicios_completados": 0,
+    "ejercicios_totales": 34,
+    "racha_dias": 0,
+    "ultima_actividad": null
+  }
+}
